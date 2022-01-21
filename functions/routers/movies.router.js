@@ -13,7 +13,13 @@ const routeMovies = (db) => {
         snapshotMovies.forEach((doc) => {
           allMovies.push({
             id: doc.id,
-            ...doc.data(),
+            name: doc.data().name,
+            author: doc.data().author,
+            img: decodeURIComponent(doc.data().img),
+            video: decodeURIComponent(doc.data().video),
+            category: doc.data().category,
+            description: doc.data().description,
+            likes: doc.data().likes,
           });
         });
         res.send(allMovies);
@@ -33,7 +39,13 @@ const routeMovies = (db) => {
       .then((movie) => {
         res.status(200).json({
           id: movie.id,
-          ...movie.data(),
+          name: movie.data().name,
+          author: movie.data().author,
+          img: decodeURIComponent(movie.data().img),
+          video: decodeURIComponent(movie.data().video),
+          category: movie.data().category,
+          description: movie.data().description,
+          likes: movie.data().likes,
         });
       })
       .catch((error) => {
@@ -49,8 +61,8 @@ const routeMovies = (db) => {
       .add({
         name: req.body.name,
         author: req.body.author,
-        img: encodeURI(req.body.img),
-        video: encodeURI(req.body.video),
+        img: encodeURIComponent(req.body.img),
+        video: encodeURIComponent(req.body.video),
         category: req.body.category,
         description: req.body.description,
         likes: 0,
@@ -72,8 +84,8 @@ const routeMovies = (db) => {
       .update({
         name: req.body.name,
         author: req.body.author,
-        img: encodeURI(req.body.img),
-        video: encodeURI(req.body.video),
+        img: encodeURIComponent(req.body.img),
+        video: encodeURIComponent(req.body.video),
         category: req.body.category,
         description: req.body.description,
         likes: 0,
