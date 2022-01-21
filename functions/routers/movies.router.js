@@ -88,7 +88,6 @@ const routeMovies = (db) => {
         video: encodeURIComponent(req.body.video),
         category: req.body.category,
         description: req.body.description,
-        likes: 0,
       })
       .then((response) => {
         res.send("Film modifié");
